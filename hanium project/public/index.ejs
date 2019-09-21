@@ -1,0 +1,113 @@
+
+<head>
+    <meta charset="utf-8">
+    <title>WeBF</title>
+    <link rel="stylesheet" type="text/css" href="../semantic-ui/semantic.min.css">
+    <link rel="stylesheet" type="text/css" href="../style/style.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="../semantic-ui/semantic.min.js"></script>
+    <script type="text/javascript" src="../style/functions.js"></script>
+
+</head>
+
+<body>
+    <a href="./" ><h1 class="ui header" id="header">WeBF</h1></a>
+    <div class="container">
+        <div class="ui green fluid card" id="cardbox" name="box">
+            <label class="header" id="login-label">로그인</label>
+            <form method="POST" id="login-form" action="/process/login">
+                <table id="login-table">
+                    <tr>
+                        <td><label class="input-label">아이디</label></td>
+                        <td colspan="2">
+                            <div class="ui input class"><input type="text" name="id" required></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label class="input-label">비밀번호</label></td>
+                        <td colspan="2">
+                            <div class="ui input class"><input type="password" name="password" required></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" id="button-section">
+                            <div class="ui buttons">
+                                <input type="submit" class="ui green button" value="로그인">
+                                <div class="or"></div>
+                                <input type="button" class="ui button" value="회원가입" onclick="changeBoxSize('box')">
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+            <label class="header" id="register-label">회원가입</label>
+            <form method ="POST" id="register-form" action="/process/adduser">
+                <table id="register-table">
+                    <tr>
+                        <td><label class="input-label">아이디</label></td>
+                        <td colspan="2">
+                            <div class="ui input class"><input type="text" name="id_r" oninput="idCheck()" maxlength="25"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td colspan="2">
+                            <div class="ui pointing label" id="showIdRules" style="display:none">영문 숫자 혼용 4자리 이상</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td colspan="2">
+                            <div class="ui pointing label" id="showIdState" style="display:none">중복되는 아이디 입니다.</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label class="input-label">비밀번호</label></td>
+                        <td colspan="2">
+                            <div class="ui input class"><input type="password" name="password_r" maxlength="25" oninput="passwordRules(); passwordCheck()"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td colspan="2">
+                            <div class="ui pointing label" id="showPwdRules" style="display:none">숫자+영문+특수문자 8자리 이상</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label class="input-label">비밀번호 확인</label></td>
+                        <td colspan="2">
+                            <div class="ui input class"><input type="password"name="chkPassword" maxlength="25" oninput="passwordCheck()"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td colspan="2">
+                            <div class="ui pointing label" id="showChkRules" style="display:none">비밀번호가 일치하지 않습니다</div>
+                        </td>
+                        </tr>
+                    <tr>
+                        <td><label class="input-label">이메일</label></td>
+                        <td colspan="2">
+                            <div class="ui input class"><input type="email" name="email" oninput="emailCheck()"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td colspan="2">
+                            <div class="ui pointing label" id="showEmailRules" style="display:none">올바른 이메일 형식이 아닙니다</div>
+                        </td>
+                        </tr>
+                    <tr>
+                    <tr>
+                        <td colspan="3" id="button-section">
+                            <div class="ui buttons">
+                                <input type="submit" class="ui green button" value="제출" id="regSubmit" disabled>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</body>

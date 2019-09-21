@@ -1,0 +1,101 @@
+html {
+    width: 100%;
+    height: 100%;
+}
+body {
+    width: 100%;
+    height: 100%;
+    color: #000;
+    background: url('./image/background-smartphone.jpg'),
+                linear-gradient(180deg,#000, #222, #fff);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-x: center;
+    background-blend-mode: screen;
+    background-attachment: fixed;
+}
+.container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+
+}
+.input-label{
+    font-weight: bold;
+}
+#header{
+    font-size: 5em;
+    text-align: center;
+    color:rgb(0, 179, 0);
+    margin-top: 10%;
+    text-shadow: 0 0 10px darkgreen;
+}
+#cardbox{
+    width: 30em;
+    animation-name: transition;
+    animation-duration:1s;
+    animation-direction:alternate;
+    animation-fill-mode: forwards;
+    animation-play-state: initial;
+}
+#login-label{
+    align-self: center;
+    align-content: center;
+    font-size: 2em;
+    font-weight: bold;
+    color: #000;
+    padding: 1em;
+}
+#register-label{
+    display: none;
+    align-self: center;
+    align-content: center;
+    font-size: 2em;
+    font-weight: bold;
+    color: #000;
+    padding: 1em;
+}
+#login-form{
+    align-content: center;
+    align-self: center;
+}
+#register-form{
+    display: none;
+    align-content: center;
+    align-self: center;
+}
+#login-table{
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+#register-table{
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+#button-section{
+    text-align: center;
+    padding-top: 1em;
+    padding-bottom: 2em;
+}
+
+@keyframes transition {
+    0% {
+      top:-20em;
+      opacity:0;
+    }
+    100% {
+      top:0em;
+      opacity:1;
+    }
+}
+
+@keyframes change {
+    0% {
+      top:0em;
+    }
+    100% {
+      top:1em;
+    }
+}

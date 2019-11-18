@@ -1,5 +1,7 @@
 var mongoose = require('mongoose');
-mongoose.set('useCreateIndex', true)
+mongoose.set('useCreateIndex', true);
+mongoose.set('useFindAndModify', false);
+
 //database 객체에 db, schema, model 모두 추가
 var database = { };
 

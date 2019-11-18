@@ -26,12 +26,13 @@ app.set('view engine', 'ejs');
 app.set('views', __dirname+'/public')
 
 //body-parser를 사용해 application/x-www-form-urlencoded 파싱
-app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.urlencoded({limit:"50mb", extended:false}));
 
 //body-parser를 사용해 application/json 파싱
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit:"50mb"}));
 
 //public 폴더를 static으로 오픈
+app.use('/public', static(path.join(__dirname, 'public')));
 app.use('/style', static(path.join(__dirname, 'style')));
 app.use('/semantic-ui', static(path.join(__dirname, 'semantic-ui')));
 
@@ -59,7 +60,7 @@ app.use('/', router);
 //===== 404 오류 페이지 처리 =====//
 var errorHandler = expressErrorHandler({
     static: {
-        '404': './ExpressExample/public/404.html'
+        '404': './public/404.html'
     }
 });
 

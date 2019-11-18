@@ -23,17 +23,20 @@ body {
 
 }
 .input-label{
-    font-weight: bold;
+    font-size: 1.25em;
+}
+.input-section{
+    font-size:1.25em;
 }
 #header{
-    font-size: 5em;
+    font-size: 8em;
     text-align: center;
     color:rgb(0, 179, 0);
     margin-top: 10%;
     text-shadow: 0 0 10px darkgreen;
 }
 #cardbox{
-    width: 30em;
+    width: 35em;
     animation-name: transition;
     animation-duration:1s;
     animation-direction:alternate;
@@ -67,12 +70,10 @@ body {
     align-self: center;
 }
 #login-table{
-    padding-top: 1em;
-    padding-bottom: 1em;
+    padding:1em;
 }
 #register-table{
-    padding-top: 1em;
-    padding-bottom: 1em;
+    padding:1em;
 }
 #button-section{
     text-align: center;

@@ -8,6 +8,18 @@ module.exports = {
             collection:'test0', 
             schemaName:'UserSchema', 
             modelName:'UserModel'
+        },
+        {
+            file:'./category_schema',
+            collection:'category0',
+            schemaName:'CategorySchema',
+            modelName:'CategoryModel'
+        },
+        {
+            file:'./document_schema',
+            collection:'document0',
+            schemaName:'DocumentSchema',
+            modelName:'DocumentModel'
         }
     ],   
     route_info :
@@ -41,6 +53,91 @@ module.exports = {
             path:'/IDCHECK',
             method:'idCheck',
             type:'get'
+        },
+        {
+            file:'./user_route',
+            path:'/process/logout',
+            method:'logout',
+            type:'get'
+        },
+        {
+            file:'./post_route',
+            path:'/CATEGORYCHECK',
+            method:'categoryCheck',
+            type:'get'
+
+        },
+        {
+            file:'./post_route',
+            path:'/main',
+            method:'category',
+            type:'get'
+        },
+        {
+            file:'./post_route',
+            path:'/process/addcategory',
+            method:'addcategory',
+            type:'post'
+        },
+        {
+            file:'./post_route',
+            path:'/main/:categoryTitle',
+            method:'documentlist',
+            type:'get'
+        },
+        {
+            file:'./post_route',
+            path:'/process/delcategory',
+            method:'delcategory',
+            type:'post'
+        },
+        {
+            file:'./post_route',
+            path:'/process/adddocument',
+            method:'adddocument',
+            type:'post'
+        },
+        {
+            file:'./post_route',
+            path:'/process/deldocument',
+            method:'deldocument',
+            type:'post'
+        },
+        {
+            file:'./post_route',
+            path:'/SHOWDOCUMENT',
+            method:'showdocument',
+            type:'get'
+        },
+        {
+            file:'./mobile_route',
+            path:'/mobileLogin',
+            method:'mobileLogin',
+            type:'post'
+        },
+        {
+            file:'./mobile_route',
+            path:'/mobileCategory',
+            method:'mobileCategory',
+            type:'get'
+        },
+        {
+            file:'./mobile_route',
+            path:'/mobileLogout',
+            method:'mobileLogout',
+            type:'get'
+        },
+        {
+            file:'./mobile_route',
+            path:'/mobileDocList',
+            method:'mobileDocList',
+            type:'get'
+        },
+        {
+            file:'./mobile_route',
+            path:'/mobileReadDoc',
+            method:'mobileReadDoc',
+            type:'post'
         }
     ]
 

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>WeBF - Category</title>
+    <link rel="stylesheet" type="text/css" href="../semantic-ui/semantic.min.css">
+    <link rel="stylesheet" type="text/css" href="../style/document-style.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="../semantic-ui/semantic.min.js"></script>
+    <script type="text/javascript" src="../style/functions.js"></script>
+    <script src="https://cdn.ckeditor.com/4.13.0/standard/ckeditor.js"></script>
+</head>
+
+<body>
+    <div onclick="hideCreateBox('create-document-box'); hideDocumentBox('show-document-box')"
+        style="min-height: 100vh; width:100%">
+        <div class="ui container" id="custom-container">
+            <div class="massive ui menu">
+                <a class="header item" id="header" href="/">WeBF</a>
+                <div class="active item"><%=category%></div>
+                <div class="ui simple dropdown item">
+                    <i class="user icon"></i>
+                    <div class="text">
+                        <%=id%>
+                    </div>
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <a class="item" href="/process/logout">로그아웃</a>
+                    </div>
+                </div>
+                <div class="divider"></div>
+                <div class="right menu">
+                    <div class="item">
+                        <div class="ui action left icon input">
+                            <i class="search icon"></i>
+                            <input type="text">
+                            <button class="ui button">검색</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p>
+                <table class="massive ui green celled table" style="border-spacing: 1;">
+                    <thead>
+                        <tr>
+                            <th>번호</th>
+                            <th>제목</th>
+                            <th>작성일자</th>
+                            <th style="width:1%; white-space: nowrap">
+                                <button class="ui center floated green button"
+                                    onclick="showCreateBox('create-document-box')">
+                                    <i class="edit icon"></i>글쓰기
+                                </button>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <%
+                        for(var i=0; i<documents.length; i++){
+                            var curTitle = documents[i]._doc.title;
+                            var curContents = documents[i]._doc.content;
+                            var curDate = moment(documents[i]._doc.created_at).format('YYYY-MM-DD hh:mm:ss');
+                            var curNo = documents[i]._doc.number;
+                    %>
+                        <tr class="table_btn" id = "<%=curNo%>TR" style="line-height: 0%;">
+                            <td onclick="showDocumentBox('show-document-box','<%=curNo%>','<%=categoryid%>')"><%=curNo%></td>
+                            <td onclick="showDocumentBox('show-document-box','<%=curNo%>','<%=categoryid%>')"><%=curTitle%></td>
+                            <td onclick="showDocumentBox('show-document-box','<%=curNo%>','<%=categoryid%>')"><%=curDate%></td>
+                            </div>
+                            <td style="width:1%; white-space: nowrap; text-align: center;">
+                                <form method="POST" action="/process/deldocument" id="<%=curNo%>FORM">
+                                    <input type="hidden" name="categoryObjId" value="<%=categoryid%>">
+                                    <input type="hidden" name="number" value="<%=curNo%>">
+                                    <button type="button" class="inner ui compact icon red inverted button"
+                                            onclick="confirm_docDelete('<%=curNo%>FORM','<%=curNo%>TR')">
+                                        <i class="trash icon"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        <% } %>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th colspan="4">
+                                <div class="ui right floated pagination menu">
+                                    <%
+                                        var initial = Math.floor(page/5) * 5;
+                                        console.log('initial : '+initial);
+
+                                        var max = pageCount - initial;
+                                        if(max > 5){
+                                            max = initial + 5;
+                                        }else{
+                                            max = initial + max;
+                                        }
+                                        console.log('max : '+max);
+
+                                        if(page > 0){
+                                    %>
+                                            <a class="ui icon item" onclick = "paging('<%=category%>','0','<%=perPage%>')">
+                                                <i class="fast backward icon"></i>
+                                            </a>
+                                            <a class="ui icon item" onclick = "paging('<%=category%>','<%=(page-1)%>','<%=perPage%>')">
+                                                <i class="left chevron icon"></i>
+                                            </a>
+                                    <%
+                                        }else{
+                                    %>
+                                            <a class="ui disabled icon item">
+                                                <i class="fast backward icon"></i>
+                                            </a>
+                                            <a class="ui disabled icon item">
+                                                <i class="left chevron icon"></i>
+                                            </a>
+                                    <% 
+                                        }
+                                    %>
+                                    <%
+                                        for(var i =initial; i<max; i++){
+                                            if(i != page){
+                                    %>
+                                                <a class = "ui item" onclick="paging('<%=category%>','<%=i%>','<%=perPage%>')">
+                                                    <%=i+1%>
+                                                </a>
+                                        <%
+                                            }else{
+                                        %>
+                                                <div class = "ui active item">
+                                                    <%=i+1%>
+                                                </div>
+                                    <%
+                                            }
+                                        }
+                                    %>
+                                    <%
+                                        if((page+1) < pageCount){
+                                    %>
+                                            <a class = "ui icon item" onclick="paging('<%=category%>','<%=(page+1)%>','<%=perPage%>')">
+                                                <i class="right chevron icon"></i>
+                                            </a>
+                                            <a class = "ui icon item" onclick="paging('<%=category%>','<%=(pageCount-1)%>','<%=perPage%>')">
+                                                <i class="fast forward icon"></i>
+                                            </a>
+                                    <%
+                                        }else{
+                                    %>
+                                            <a class="ui disabled icon item">
+                                                <i class="right chevron icon"></i>
+                                            </a>
+                                            <a class="ui disabled icon item">
+                                                <i class="fast forward icon"></i>
+                                            </a>
+                                    <%
+                                        }
+                                    %> 
+                                </div>
+                            </th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </p>
+        </div>
+    </div>
+    <div class="ui centered card" id="create-document-box">
+        <form class="content ui form" method="POST" action="/process/adddocument">
+            <table>
+                <tr>
+                    <td style="font-size:1.3em">제목</td>
+                    <td><input type="text" name="title" placeholder="제목 입력" style="font-size:1.3em"></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <textarea id="contents" name="contents"></textarea>
+                    </td>
+                </tr>
+            </table>
+            <button type="submit" class="big ui right floated green button">제출</button>
+            <input type="hidden" name="category" value="<%=category%>">
+        </form>
+    </div>
+    <div>
+        <div class="ui container" id="show-document-box">
+            <table class="ui table">
+                <tr>
+                    <td style="width: 6em;">
+                        <h2 class="ui header">제목</h2>
+                    </td>
+                    <td id="show-title" style="font-size: 1.5em;">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 5em; vertical-align: top;">
+                        <h3 class="ui header">내용</h3>
+                    </td>
+                    <td id="show-content" colspan="2">
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+</body>
+<script>
+    $(document).ready(function () {
+        CKEDITOR.config.width = '50em';
+        CKEDITOR.config.height = '35em';
+        CKEDITOR.config.resize_enabled = false;
+        CKEDITOR.config.removePlugins = 'maximize'
+        CKEDITOR.replace('contents');
+    });   
+</script>
+
+</html>

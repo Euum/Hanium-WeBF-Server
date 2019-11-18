@@ -1,8 +1,50 @@
-.gridBtn{
-    width:100%;
-    text-align:center;
-    word-wrap: break-word;
+body{
+    margin:0;
 }
-#newBtn{
-    font-size:1em;
+.gridBtn{
+    text-align:center;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 8em;
+    height: 8em;
+}
+.grid-auto-fill{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15em,1fr));
+}
+.grid-element{
+    padding: 1em;
+}
+.outter{
+    position: relative;
+    display: table;
+}
+.inner{
+    z-index: 2;
+    top: 0.5em;
+    right: 0.6em;
+    position: absolute;
+    display: table-row;
+}
+#custom-container{
+    z-index: 1;
+}
+#create-category-box{
+    z-index: 3;
+    padding:0.9em 0.5em 0em 0.5em;
+    width: 35em;
+    height: 6.5em;
+    align-content: center;
+    align-items: center;
+    position: fixed;
+    box-shadow: rgba(0,0,0,0.5) 0 0 0 9999px;
+    opacity: 0;
+    top: -10%;
+    left: 10%;
+    right: 10%;
+    border:1;
+}
+#header{
+    color:rgb(255, 255, 255);
+    background:rgb(0, 179, 0);
 }
